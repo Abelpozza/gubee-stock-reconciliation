@@ -3,7 +3,7 @@ spring:
     name: stock-reconciliation
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/stockreconciliation
+    url: jdbc:postgresql://localhost:5433/stockreconciliation
     username: gubee
     password: gubee123
     driver-class-name: org.postgresql.Driver

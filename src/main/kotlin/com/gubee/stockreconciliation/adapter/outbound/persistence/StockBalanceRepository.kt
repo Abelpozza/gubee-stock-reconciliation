@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository
 interface StockBalanceRepository : JpaRepository<StockBalance, StockBalanceId> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT s FROM StockBalance s WHERE s.id.accountId = accountId AND s.id.sku = :sku")
+    @Query("SELECT s FROM StockBalance s WHERE s.id.accountId = :accountId AND s.id.sku = :sku")
     fun findByIdWithLock(accountId: String, sku: String): StockBalance?
 
-    @Query("SELECT s FROM StockBalance s WHERE s.id.accountId = accountID AND s.id.sku = :sku")
+    @Query("SELECT s FROM StockBalance s WHERE s.id.accountId = :accountId AND s.id.sku = :sku")
     fun findByAccountIdAndSku(accountId: String, sku: String): StockBalance?
 }
