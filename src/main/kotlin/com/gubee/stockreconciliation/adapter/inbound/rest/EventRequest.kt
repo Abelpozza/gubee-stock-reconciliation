@@ -21,7 +21,7 @@ data class EventRequest(
     @field:NotBlank
     val sku: String,
 
-    val marketplacec: String? = null,
+    val marketplace: String? = null,
     val externalOrderId: String? = null,
     val quantity: Int? = null,
     val available: Int? = null,

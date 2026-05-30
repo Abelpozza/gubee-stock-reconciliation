@@ -23,7 +23,6 @@ class StockEvent(
 
     @Column(nullable = false)
     val sku: String,
-
     val marketplace: String? = null,
 
     @Column(name = "external_order_id")
