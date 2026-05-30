@@ -9,25 +9,28 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface StockEventRepository : JpaRepository<StockEvent, Long> {
-    fun existsByEventId(eventId: String): Boolean
+
+    fun findByEventId(eventId: String): StockEvent?
+
     fun findByStatus(status: EventStatus): List<StockEvent>
+
     fun findByAccountIdAndSkuOrderByOccurredAtAsc(
         accountId: String,
-        sku: String ): List<StockEvent>
-
+        sku: String
+    ): List<StockEvent>
 
     @Query("""
         SELECT COUNT(e) > 0 FROM StockEvent e
         WHERE e.accountId = :accountId
-        AND e.sku = :sku
-        AND e.externalOrderId = :externalOrderId
-        AND e.type = :type
-        AND e.status = 'PROCESSED'
-        """)
-    fun existsProcessedEvent(
+          AND e.sku = :sku
+          AND e.externalOrderId = :externalOrderId
+          AND e.type IN :types
+          AND e.status = com.gubee.stockreconciliation.domain.model.EventStatus.PROCESSED
+    """)
+    fun existsProcessedForOrder(
         accountId: String,
         sku: String,
         externalOrderId: String,
-        type: EventType
+        types: Collection<EventType>
     ): Boolean
 }
