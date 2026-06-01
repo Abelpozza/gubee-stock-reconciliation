@@ -57,7 +57,7 @@ class ProcessEventUseCase(
 
     private fun applyAdjustment(event: StockEvent): EventResponse {
         val target = event.available
-            ?: return finalize(event, EventStatus.INCONSISTENT, "STOCK_ADJUSTED sem 'available'")
+            ?: return finalize(event, EventStatus. INCONSISTENT, "STOCK_ADJUSTED sem 'available'")
         if (target < 0)
             return finalize(event, EventStatus.INCONSISTENT, "Ajuste com 'available' negativo")
 
