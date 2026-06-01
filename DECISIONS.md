@@ -82,6 +82,14 @@ A chave composta `(accountId, sku)` garante que contas diferentes não se interf
 - **Swagger/OpenAPI**: adicionado via springdoc-openapi. Disponível em
   `http://localhost:8080/swagger-ui/index.html` com a aplicação rodando.
 
+## O que simplifiquei por causa do prazo
+
+- Testcontainers: os testes dependem do PostgreSQL do Docker Compose rodando localmente.
+- Scheduler com intervalo fixo de 30 segundos em vez de retry com backoff exponencial.
+- Sem autenticação nos endpoints.
+- Sem dead-letter para eventos que travam no reprocessamento.
+- Swagger sem customização de descrições nos endpoints.
+
 ## O que faria diferente em produção
 
 - Kafka pra garantir durabilidade, replay e desacoplar os eventos.
